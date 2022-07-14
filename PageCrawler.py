@@ -1,5 +1,4 @@
 import re
-from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 import requests
 
@@ -10,6 +9,10 @@ class PageCrawler:
     """
 
     def __init__(self, url):
+        """
+        Gets a URL and extracts the data from it.
+        :param url: URL to extract the data
+        """
         self._url = url
         req = requests.get(self._url)
         req = req.text
@@ -32,6 +35,6 @@ class PageCrawler:
         links = []
         for link in soup.findAll('a', attrs={'href': re.compile("^http")}):
             links.append(link.get('href'))
-        return list(dict.fromkeys(links))
+        return list(dict.fromkeys(links)) # Deletes a double link
 
 
