@@ -13,8 +13,9 @@ class HistoryCrawler:
         :param url: The root URL crawling
         """
         root_page = PageCrawler(url)
-        HistoryCrawler.register_dict["non_scanned"] = HistoryCrawler.register_dict["non_scanned"] + root_page.findlinks()
         self.register_dict = {"scanned": [], "non_scanned": root_page.findlinks()}
+        HistoryCrawler.register_dict["non_scanned"] = HistoryCrawler.register_dict[
+                                                          "non_scanned"] + self.register_dict["non_scanned"]
 
     def __iter__(self):
         """

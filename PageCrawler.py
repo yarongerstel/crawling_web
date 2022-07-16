@@ -35,6 +35,4 @@ class PageCrawler:
         links = []
         for link in soup.findAll('a', attrs={'href': re.compile("^http")}):
             links.append(link.get('href'))
-        return list(dict.fromkeys(links)) # Deletes a double link
-
-
+        return list(dict.fromkeys(links))  # Deletes a double link
