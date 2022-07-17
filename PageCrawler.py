@@ -14,7 +14,7 @@ class PageCrawler:
         :param url: URL to extract data
         """
         # regex of MAC address
-        self._regex = "[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}"
+        self._regex = r"(?:[0-9A-Fa-f]{2}[:]){5}(?:[0-9A-Fa-f]){2}"
         self._url = url
         try:
             res = requests.get(self._url)
