@@ -10,25 +10,29 @@ class PageCrawler:
 
     def __init__(self, url):
         """
-        Gets a URL and extracts the data from it.
-        :param url: URL to extract the data
+        Gets url and extracts data from it.
+        :param url: URL to extract data
         """
+        # regex of MAC address
+        self._regex = "[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}:[A-Fa-f0-9]{2}"
         self._url = url
-        req = requests.get(self._url)
-        req = req.text
-        self._response = re.sub(r"\s+", " ", req)
+        try:
+            res = requests.get(self._url)
+            res = res.text
+            self._response = re.sub(r"\s+", " ", res)
+        except Exception as e:
+            print("failed to get response to: " + self._url, type(e))
 
-    def crawl(self, regex):
+    def crawl(self):
         """
-        The function gets a regular expression and returns a list of all matches from the given URL
-        :param regex: A regular expression used to search for MAC addresses
+        The function returns a list of all mac address from the given URL
         :return: list of all matches. If no match is found returns an empty list
         """
-        return re.findall(regex, self._response)
+        return re.findall(self._regex, self._response)
 
     def findlinks(self):
         """
-        The function returns all links from this web page
+        The function returns all links from this url
         :return: List of all links from this web page
         """
         soup = BeautifulSoup(self._response, "html.parser")
