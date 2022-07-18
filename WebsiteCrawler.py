@@ -15,6 +15,7 @@ class WebsiteCrawler:
 
     def __init__(self, root_url, max_page):
         """
+        The function initializes the values and also defines the domain in which the scan will be performed
         :param root_url: The root url to be crawled
         :param max_page: Some URLs to check
         """

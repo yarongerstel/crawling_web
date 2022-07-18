@@ -5,7 +5,7 @@ import requests
 
 class PageCrawler:
     """
-    the class Gets a URL that saves the information from that site and uses it
+    The class receives a URL and extracts the information from this site and uses it
     """
 
     def __init__(self, url):
